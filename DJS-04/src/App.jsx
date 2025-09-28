@@ -19,6 +19,15 @@ function App() {
   const closeModal = () => {
     setSelectedPodcast(null)
   }
+
+  //Function to search for podcasts
+
+  const [searchPodcast, setSearchTerm] = useState('')
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value)
+  }
+
+  // Function to get genre names from IDs
    
   const getGenreNames = (genreIds) => {
     return genreIds.map(id => {
