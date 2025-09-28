@@ -9,6 +9,12 @@ function App() {
   const [loading, setLoading] = useState(true)        
   const [error, setError] = useState(null)
   const [selectedPodcast, setSelectedPodcast] = useState(null)
+  const [sortOption, setSortOption] = useState('newest') // Default to newest first
+
+  // Function to handle sort option change
+  const handleSortChange = (event) => {
+    setSortOption(event.target.value)
+  }
 
   // Function to handle card clicks (for modal)
   const handleCardClick = (podcast) => {
@@ -78,6 +84,24 @@ const filteredPodcasts = podcasts.filter(podcast =>
     fetchPodcasts()  
   }, [])
 
+  // Combine filtering and sorting
+  const filteredAndSortedPodcasts = podcasts
+  .filter(podcast =>
+    podcast.title.toLowerCase().includes(searchPodcast.trim().toLowerCase())
+  )
+  .sort((a, b) => {
+   if (sortOption === 'newest') {
+      return new Date(b.updated) - new Date(a.updated)
+    } else if (sortOption === 'a-z') {
+      return a.title.localeCompare(b.title)
+    } else if (sortOption === 'z-a') {
+      return b.title.localeCompare(a.title)
+    }
+    else {
+      return 0;
+    }
+  })
+
   return (
     <div>
       <header className="app-header">
@@ -90,6 +114,18 @@ const filteredPodcasts = podcasts.filter(podcast =>
             onChange={handleSearchChanges}
             className="search-bar"
           />
+          
+          <select
+          value={sortOption} 
+          onChange={handleSortChange}
+          
+          >
+          <option value="newest">Newest First</option>
+          <option value="a-z">Sort A-Z</option>
+          <option value="z-a">Sort Z-A</option>
+          
+
+          </select>
           <button className="search-button"
            onClick={handleSearchClick}>
             Search
@@ -99,7 +135,7 @@ const filteredPodcasts = podcasts.filter(podcast =>
       <main className="grid">
         {loading && <p className="loading">Loading podcasts...</p>}
         {error && <p className="error-message">Error: {error} </p>}
-        {!loading && !error && filteredPodcasts.map(podcast => (
+        {!loading && !error && filteredAndSortedPodcasts.map(podcast => (
           // Render podcast card
           <div 
             key={podcast.id} 
