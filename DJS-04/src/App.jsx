@@ -4,52 +4,47 @@ import Modal from './Modal.jsx'
 import './styles.css'
 
 function App() {
-  
-  const [podcasts, setPodcasts] = useState([])        
-  const [loading, setLoading] = useState(true)        
+  // State declarations
+  const [podcasts, setPodcasts] = useState([])
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [selectedPodcast, setSelectedPodcast] = useState(null)
-  const [sortOption, setSortOption] = useState('newest') // Default to newest first
-  const [visibleCount, setVisibleCount] = useState(20); // Number of podcasts to show initially
-  const [showLoadMore, setShowLoadMore] = useState(true); // Control visibility of Load More button
-  const [selectedGenre, setSelectedGenre] = useState('all') // Default to show all genres
+  const [sortOption, setSortOption] = useState('newest')
+  const [visibleCount, setVisibleCount] = useState(20)
+  const [showLoadMore, setShowLoadMore] = useState(true)
+  const [selectedGenre, setSelectedGenre] = useState('all')
+  const [searchPodcast, setSearchPodcast] = useState('')
 
-  //Load More button click handler
+  // Event handlers
   const handleLoadMore = () => {
     setVisibleCount(visibleCount + 20)
     if (visibleCount + 20 >= filteredAndSortedPodcasts.length) {
-      setShowLoadMore(false);
+      setShowLoadMore(false)
     }
   }
-  // handle genre change
+
   const handleGenreChange = (event) => {
     setSelectedGenre(event.target.value)
   }
 
-  // Function to handle sort option change
   const handleSortChange = (event) => {
     setSortOption(event.target.value)
   }
 
-  // Function to handle card clicks (for modal)
   const handleCardClick = (podcast) => {
     setSelectedPodcast(podcast)
   }
 
-  // Function to close modal
   const closeModal = () => {
     setSelectedPodcast(null)
   }
 
-  //Function to search for podcasts
-
-  const [searchPodcast, setSearchPodcast] = useState('')
-  const handleSearchChanges = (event)=>{
+  const handleSearchChanges = (event) => {
     setSearchPodcast(event.target.value)
   }
 
-  //search button click handler
   const handleSearchClick = () => {
+    // Search button functionality
   }
  
 
@@ -101,21 +96,28 @@ const filteredPodcasts = podcasts.filter(podcast =>
 
   // Combine filtering and sorting
   const filteredAndSortedPodcasts = podcasts
-  .filter(podcast =>
-    podcast.title.toLowerCase().includes(searchPodcast.trim().toLowerCase())
-  )
-  .sort((a, b) => {
-   if (sortOption === 'newest') {
-      return new Date(b.updated) - new Date(a.updated)
-    } else if (sortOption === 'a-z') {
-      return a.title.localeCompare(b.title)
-    } else if (sortOption === 'z-a') {
-      return b.title.localeCompare(a.title)
-    } else if (sortOption === 'no sort') {
-      return 0;
-    }
-    return 0;
-  })
+    .filter(podcast => {
+      // Search filter
+      const matchesSearch = podcast.title.toLowerCase().includes(searchPodcast.trim().toLowerCase())
+      
+      // Genre filter
+      const matchesGenre = selectedGenre === 'all' || podcast.genres.includes(parseInt(selectedGenre))
+      
+      // Both filters must match
+      return matchesSearch && matchesGenre
+    })
+    .sort((a, b) => {
+      if (sortOption === 'newest') {
+        return new Date(b.updated) - new Date(a.updated)
+      } else if (sortOption === 'a-z') {
+        return a.title.localeCompare(b.title)
+      } else if (sortOption === 'z-a') {
+        return b.title.localeCompare(a.title)
+      } else if (sortOption === 'no sort') {
+        return 0
+      }
+      return 0
+    })
 
 
 
@@ -143,39 +145,33 @@ const visiblePodcasts = filteredAndSortedPodcasts.slice(0, visibleCount)
             className="search-bar"
           />
           
-          <select
-          value={sortOption} 
-          onChange={handleSortChange}
-          
-          >
-          <option value="newest">Newest First</option>
-          <option value="a-z">Sort A-Z</option>
-          <option value="z-a">Sort Z-A</option>
-          <option value="no sort">No Sort</option>
-          
-
+          <select value={sortOption} onChange={handleSortChange}>
+            <option value="newest">Newest First</option>
+            <option value="a-z">Sort A-Z</option>
+            <option value="z-a">Sort Z-A</option>
+            <option value="no sort">No Sort</option>
           </select>
 
-            <select 
-    value={selectedGenre} 
-    onChange={handleGenreChange}
-    className="genre-dropdown"
-  >
-    <option value="all">All Genres</option>
-    <option value="1">Personal Growth</option>
-    <option value="2">True Crime</option>
-    <option value="3">History</option>
-    <option value="4">Comedy</option>
-    <option value="5">Entertainment</option>
-    <option value="6">Business</option>
-    <option value="7">Fiction</option>
-    <option value="8">News</option>
-    <option value="9">Kids & Family</option>
-  </select>
-          <button className="search-button"
-           onClick={handleSearchClick}>
+          <select 
+            value={selectedGenre} 
+            onChange={handleGenreChange}
+            className="genre-dropdown"
+          >
+            <option value="all">All Genres</option>
+            <option value="1">Personal Growth</option>
+            <option value="2">True Crime</option>
+            <option value="3">History</option>
+            <option value="4">Comedy</option>
+            <option value="5">Entertainment</option>
+            <option value="6">Business</option>
+            <option value="7">Fiction</option>
+            <option value="8">News</option>
+            <option value="9">Kids & Family</option>
+          </select>
+          
+          <button className="search-button" onClick={handleSearchClick}>
             Search
-           </button>
+          </button>
         </div>
       </header>
       <main className="grid">
