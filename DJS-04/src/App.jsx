@@ -10,6 +10,21 @@ function App() {
   const [error, setError] = useState(null)
   const [selectedPodcast, setSelectedPodcast] = useState(null)
   const [sortOption, setSortOption] = useState('newest') // Default to newest first
+  const [visibleCount, setVisibleCount] = useState(20); // Number of podcasts to show initially
+  const [showLoadMore, setShowLoadMore] = useState(true); // Control visibility of Load More button
+  const [selectedGenre, setSelectedGenre] = useState('all') // Default to show all genres
+
+  //Load More button click handler
+  const handleLoadMore = () => {
+    setVisibleCount(visibleCount + 20)
+    if (visibleCount + 20 >= filteredAndSortedPodcasts.length) {
+      setShowLoadMore(false);
+    }
+  }
+  // handle genre change
+  const handleGenreChange = (event) => {
+    setSelectedGenre(event.target.value)
+  }
 
   // Function to handle sort option change
   const handleSortChange = (event) => {
@@ -96,11 +111,24 @@ const filteredPodcasts = podcasts.filter(podcast =>
       return a.title.localeCompare(b.title)
     } else if (sortOption === 'z-a') {
       return b.title.localeCompare(a.title)
-    }
-    else {
+    } else if (sortOption === 'no sort') {
       return 0;
     }
+    return 0;
   })
+
+
+
+// Simple click handler
+const loadMore = () => {
+  setVisibleCount(visibleCount + 20)
+  if (visibleCount + 20 >= filteredAndSortedPodcasts.length) {
+    setShowLoadMore(false) // Hide button when all loaded
+  }
+}
+
+// Simple rendering
+const visiblePodcasts = filteredAndSortedPodcasts.slice(0, visibleCount)
 
   return (
     <div>
@@ -123,9 +151,27 @@ const filteredPodcasts = podcasts.filter(podcast =>
           <option value="newest">Newest First</option>
           <option value="a-z">Sort A-Z</option>
           <option value="z-a">Sort Z-A</option>
+          <option value="no sort">No Sort</option>
           
 
           </select>
+
+            <select 
+    value={selectedGenre} 
+    onChange={handleGenreChange}
+    className="genre-dropdown"
+  >
+    <option value="all">All Genres</option>
+    <option value="1">Personal Growth</option>
+    <option value="2">True Crime</option>
+    <option value="3">History</option>
+    <option value="4">Comedy</option>
+    <option value="5">Entertainment</option>
+    <option value="6">Business</option>
+    <option value="7">Fiction</option>
+    <option value="8">News</option>
+    <option value="9">Kids & Family</option>
+  </select>
           <button className="search-button"
            onClick={handleSearchClick}>
             Search
@@ -135,7 +181,7 @@ const filteredPodcasts = podcasts.filter(podcast =>
       <main className="grid">
         {loading && <p className="loading">Loading podcasts...</p>}
         {error && <p className="error-message">Error: {error} </p>}
-        {!loading && !error && filteredAndSortedPodcasts.map(podcast => (
+        {!loading && !error && visiblePodcasts.map(podcast => (
           // Render podcast card
           <div 
             key={podcast.id} 
@@ -164,6 +210,11 @@ const filteredPodcasts = podcasts.filter(podcast =>
           podcast={selectedPodcast} 
           onClose={closeModal} 
         />
+      )}
+
+      {/* Load More button */}
+      {showLoadMore && (
+        <button onClick={loadMore} className="load-more">Load More Podcasts</button>
       )}
     </div>
   )
