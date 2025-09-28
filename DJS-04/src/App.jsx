@@ -22,10 +22,15 @@ function App() {
 
   //Function to search for podcasts
 
-  const [searchPodcast, setSearchTerm] = useState('')
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value)
+  const [searchPodcast, setSearchPodcast] = useState('')
+  const handleSearchChanges = (event)=>{
+    setSearchPodcast(event.target.value)
   }
+
+  //search button click handler
+  const handleSearchClick = () => {
+  }
+ 
 
   // Function to get genre names from IDs
    
@@ -35,6 +40,12 @@ function App() {
       return foundGenre ? foundGenre.title : 'Unknown'
     }).join(', ')
   }
+
+//Filter podcasts based on search term
+const filteredPodcasts = podcasts.filter(podcast =>
+  podcast.title.toLowerCase().includes(searchPodcast. replace (/\s+/g,'')
+    .trim().toLowerCase())
+)
   
   const formatDate = (dateString) => {
     const date = new Date(dateString)
@@ -71,11 +82,24 @@ function App() {
     <div>
       <header className="app-header">
         <h1>🎙️ Podcast App</h1>
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="What do you want to listen to..."
+            value={searchPodcast}
+            onChange={handleSearchChanges}
+            className="search-bar"
+          />
+          <button className="search-button"
+           onClick={handleSearchClick}>
+            Search
+           </button>
+        </div>
       </header>
       <main className="grid">
         {loading && <p className="loading">Loading podcasts...</p>}
         {error && <p className="error-message">Error: {error} </p>}
-        {!loading && !error && podcasts.map(podcast => (
+        {!loading && !error && filteredPodcasts.map(podcast => (
           // Render podcast card
           <div 
             key={podcast.id} 

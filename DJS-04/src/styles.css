@@ -10,10 +10,30 @@ body {
 
 .app-header {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   padding: 1rem;
+  flex-direction: column;
   background: white;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  width: 100%;
+  max-width: 500px;
+  margin-top: 1rem;
+}
+
+.Search-bar{
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
 }
 
 .filters select {
