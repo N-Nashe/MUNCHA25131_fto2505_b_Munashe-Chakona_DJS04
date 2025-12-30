@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="60" viewBox="0 0 300 60" role="img" aria-labelledby="title">
+  <title id="title">TalentSpace logo</title>
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#FF4D8E"/>
+      <stop offset="1" stop-color="#FF85B4"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="60" rx="8" fill="white" />
+  <g transform="translate(12,10)">
+    <circle cx="20" cy="20" r="16" fill="url(#g)" />
+    <path d="M9 20 L31 20" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    <text x="52" y="28" font-family="Inter, Arial, sans-serif" font-size="20" fill="#111" font-weight="700">Talent</text>
+    <text x="130" y="28" font-family="Inter, Arial, sans-serif" font-size="20" fill="#FF4D8E" font-weight="700">Space</text>
+  </g>
+</svg>
