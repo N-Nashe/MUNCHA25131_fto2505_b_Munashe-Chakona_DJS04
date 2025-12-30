@@ -1,9 +1,12 @@
 import React from 'react'
 
+// Hero section (above the fold)
+// - Edit headline and lead copy here
+// - Abstract background blobs are in CSS and animated with `@keyframes float`
 export default function Hero() {
   return (
-    <section className="hero-section">
-      <div className="hero-bg">
+    <section className="hero-section" role="region" aria-label="Hero">
+      <div className="hero-bg" aria-hidden>
         <span className="blob b1" aria-hidden></span>
         <span className="blob b2" aria-hidden></span>
         <span className="blob b3" aria-hidden></span>

@@ -1,8 +1,10 @@
 import React from 'react'
 
+// Footer component
+// - Small and accessible. Add social links or legal text here as needed.
 export default function Footer(){
   return (
-    <footer className="site-footer">
+    <footer className="site-footer" role="contentinfo">
       <div className="container footer-inner">
         <div>
           <strong>TalentSpace</strong>

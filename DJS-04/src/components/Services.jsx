@@ -1,19 +1,21 @@
 import React from 'react'
 
-const services = [
-  'Project Management',
-  'PMO',
-  'Business Analysis',
-  'ERP (SAP, Dynamics 365)',
-  'Software Development',
-  'Integration',
-  'Data',
-  'Digital Transformation',
-]
-
+// Services grid
+// - Add/remove services in the `services` array
 export default function Services() {
+  const services = [
+    'Project Management',
+    'PMO',
+    'Business Analysis',
+    'ERP (SAP, Dynamics 365)',
+    'Software Development',
+    'Integration',
+    'Data',
+    'Digital Transformation',
+  ]
+
   return (
-    <section id="services" className="services-section">
+    <section id="services" className="services-section" role="region" aria-label="Services">
       <div className="container">
         <h2>What we do</h2>
         <p className="muted">We partner with organisations to supply delivery-critical roles on contract, project or fixed-term engagements.</p>
