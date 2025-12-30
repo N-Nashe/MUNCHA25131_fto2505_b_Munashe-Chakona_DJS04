@@ -1,6 +1,16 @@
-# React + Vite
+# My Vite + React Starter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Project reset: a minimal Vite + React scaffold to start building your new website.
+
+Quick start:
+
+1. Install dependencies: `npm install` or `pnpm install`
+2. Run dev server: `npm run dev`
+3. Edit `src/App.jsx` and `src/styles.css` to begin building your site.
+
+Backups of the previous project were created in `/Users/munashe/DJS-04/backups`.
+
+Happy building! 🚀
 
 Currently, two official plugins are available:
 
