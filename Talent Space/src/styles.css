@@ -56,9 +56,32 @@ body { margin: 0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Robo
 .service-card{ background: #ffffff; border-radius:12px; padding:20px; border:1px solid var(--card-border); box-shadow: 0 6px 18px rgba(2,6,23,0.03); transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease }
 .service-card:hover{ transform: translateY(-8px); box-shadow: 0 26px 48px rgba(2,6,23,0.08); border-color: rgba(11,58,90,0.14) }
 .service-card h3{ margin:0 0 8px 0 }
-.service-card .icon{ width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; color:white; background: linear-gradient(90deg,var(--primary-vibrant),var(--primary)); margin-bottom:12px }
+.service-card .icon{ width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; color:white; background: linear-gradient(90deg,var(--primary-2),rgba(255,106,163,0.85)); margin-bottom:12px }
 .service-card .icon svg{ width:22px; height:22px; display:block }
+.service-card .icon.muted{ filter: saturate(0.85) brightness(0.98) }
 
+/* Model & Advantage visual differences */
+.model-adv{ display:grid; grid-template-columns: 1fr 1fr; gap:18px; align-items:start; margin-top:18px }
+.model-adv .model{ background: #fff; padding:18px; border-radius:10px; border:1px solid var(--card-border); display:flex; gap:12px; align-items:flex-start }
+.model-adv .advantage{ background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.95)); padding:18px; border-radius:10px; border:1px solid rgba(11,58,90,0.06); display:flex; gap:12px; align-items:flex-start }
+.model-adv .model .icon{ background: linear-gradient(90deg,var(--primary-2),rgba(255,106,163,0.7)) }
+.model-adv .advantage .icon{ background: linear-gradient(90deg, rgba(42,160,209,0.12), rgba(42,160,209,0.06)); color:var(--brand-accent-blue) }
+
+/* Why section */
+.why-section{ padding:48px 0; background: linear-gradient(180deg, rgba(0,0,0,0.01), transparent); }
+.why-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px; margin-top:12px }
+.why-card{ background: #fff; padding:18px; border-radius:10px; border:1px solid var(--card-border); transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease }
+.why-card:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(2,6,23,0.06); border-color: rgba(11,58,90,0.12) }
+
+/* Scale CTA */
+.scale-section{ padding:42px 0; }
+.scale-card{ background: linear-gradient(90deg, rgba(255,0,112,0.06), rgba(255,106,163,0.02)); padding:22px; border-radius:12px; text-align:center; border:1px solid var(--card-border) }
+.scale-card .btn-primary{ background: linear-gradient(90deg,var(--primary-vibrant),var(--primary)); box-shadow: 0 8px 26px rgba(255,0,112,0.14) }
+.scale-card:hover{ transform: translateY(-4px); }
+
+/* Subtle fade-in helpers (kept simple so you can change easliy) */
+.fade-in{ animation: fadeIn 420ms ease both }
+@keyframes fadeIn{ from { opacity:0; transform: translateY(6px) } to { opacity:1; transform: translateY(0) } }
 /* make why-cards match hover behaviour */
 .why-card{ background: #ffffff; padding:18px; border-radius:10px; border:1px solid var(--card-border); transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease }
 .why-card:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(2,6,23,0.06); border-color: rgba(11,58,90,0.12) }
@@ -98,13 +121,14 @@ body { margin: 0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Robo
 
 /* Contact */
 .contact-section{ padding:64px 0; background: linear-gradient(180deg, rgba(255,0,112,0.03), transparent); }
-.contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items:start; max-width:980px }
-.contact-info{ padding:20px; border-radius:10px; background:#fff; border:1px solid var(--card-border) }
-.contact-form{ display:block }
+.contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items:stretch; max-width:980px }
+.contact-info{ padding:20px; border-radius:10px; background:#fff; border:1px solid var(--card-border); display:flex; flex-direction:column; justify-content:center }
+.contact-form-wrapper{ background:#fff; padding:20px; border-radius:10px; border:1px solid var(--card-border); display:flex; align-items:center }
+.contact-form{ width:100% }
 .contact-form label{ display:block }
 .contact-form input, .contact-form textarea{ width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--card-border); background: #fbfcfd }
 .contact-form span{ display:block; font-size:13px; color:var(--muted); margin-bottom:6px }
-@media (max-width:900px){ .contact-grid{ grid-template-columns: 1fr } }
+@media (max-width:900px){ .contact-grid{ grid-template-columns: 1fr } .contact-form-wrapper{ padding:12px } }
 
 /* Footer */
 .site-footer{ padding:36px 0 18px; margin-top:32px; }
@@ -122,6 +146,14 @@ body { margin: 0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Robo
 .footer-col .muted{ color: rgba(255,255,255,0.85) }
 .footer-col.social a{ display:inline-block; margin-right:8px; padding:6px 10px; border-radius:8px; background: rgba(255,255,255,0.04); }
 .site-bottom{ text-align:center; font-size:13px; color: rgba(255,255,255,0.75); margin-top:18px }
+
+/* Modal styles */
+.modal-overlay{ position:fixed; inset:0; background: rgba(2,6,23,0.6); display:flex; align-items:center; justify-content:center; padding:24px; z-index:200 }
+.modal{ background:#fff; border-radius:12px; max-width:760px; width:100%; max-height:90vh; overflow:auto; padding:20px; position:relative }
+.modal-close{ position:absolute; right:12px; top:10px; background:transparent; border:0; font-size:22px; line-height:1; cursor:pointer }
+.modal h3{ margin-top:0 }
+.modal .modal-body{ margin-top:10px; color:var(--text) }
+@media (max-width:720px){ .modal{ padding:16px } }
 
 /* Responsive footer stack */
 @media (max-width:900px){ .footer-inner{ flex-direction:column; align-items:center; text-align:center } }

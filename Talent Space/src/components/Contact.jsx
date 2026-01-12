@@ -29,7 +29,7 @@ export default function Contact(){
             <p className="muted">Or tell us about your role and we’ll recommend the right talent.</p>
           </aside>
 
-          <div>
+          <div className="contact-form-wrapper">
             <form onSubmit={handleSubmit} className="contact-form" name="contact">
               <label>
                 <span>Name</span>
@@ -41,9 +41,11 @@ export default function Contact(){
               </label>
               <label>
                 <span>Message</span>
-                <textarea name="message" value={form.message} onChange={handleChange} rows="5" required />
+                <textarea name="message" value={form.message} onChange={handleChange} rows={6} required />
               </label>
-              <button className="btn-primary" type="submit">Send message</button>
+              <div style={{display:'flex', justifyContent:'flex-start'}}>
+                <button className="btn-primary" type="submit">Send message</button>
+              </div>
             </form>
           </div>
         </div>

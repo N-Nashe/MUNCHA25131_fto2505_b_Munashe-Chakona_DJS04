@@ -17,10 +17,16 @@ export default function Services() {
         {/* Our model / Your advantage */}
         <div className="model-adv">
           <div className="model">
+            <span className="icon muted" aria-hidden>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12h18" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>
+            </span>
             <h3>Our model</h3>
-            <p className="muted">Flexible engagement models from day-rate contractors through to embedded teams and outcome-based delivery. We pair commercial governance with practical delivery experience.</p>
+            <p className="muted">Flexible engagement models — day-rate contractors, embedded teams and outcome-based delivery paired with commercial governance.</p>
           </div>
           <div className="advantage">
+            <span className="icon" aria-hidden>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3 6 6 .5-4.5 4 1 6-5.5-3L7 19l1-6L3.5 9.5 10 9 12 2z" fill="currentColor"/></svg>
+            </span>
             <h3>Your advantage</h3>
             <ul className="adv-list muted">
               <li>Fast access to experienced practitioners</li>
