@@ -61,18 +61,40 @@ body { margin: 0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Robo
 .service-card .icon svg{ width:22px; height:22px; display:block }
 .service-card .icon.muted{ filter: saturate(0.75) brightness(0.95) }
 
-/* Model & Advantage visual differences — stack vertically for clarity */
-.model-adv{ display:grid; grid-template-columns: 1fr; gap:18px; align-items:stretch; margin-top:18px }
-.model-adv{ max-width:820px; margin-left:auto; margin-right:auto }
+/* Model & Advantage visual differences — two columns on desktop, stack on tablet/mobile */
+.model-adv{ display:grid; grid-template-columns: 1fr 1fr; gap:18px; align-items:stretch; margin-top:18px }
+.model-adv{ max-width:960px; margin-left:auto; margin-right:auto }
 .model-adv .model, .model-adv .advantage{ background: #fff; padding:18px; border-radius:10px; border:1px solid var(--card-border); display:flex; flex-direction:column; gap:12px; justify-content:flex-start }
 .model-adv .model .icon{ background: linear-gradient(90deg,var(--primary-2),rgba(255,106,163,0.7)) }
 .model-adv .advantage .icon{ background: linear-gradient(90deg, rgba(42,160,209,0.12), rgba(42,160,209,0.06)); color:var(--brand-accent-blue) }
+
+/* Stack model/advantage on smaller screens (tablet and below) */
+@media (max-width:900px){
+  .model-adv{ grid-template-columns: 1fr }
+  .model-adv{ max-width:820px }
+}
 
 /* Small-screen adjustments */
 @media (max-width:900px){
   .model-adv{ grid-template-columns: 1fr; }
   .services-grid{ grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
   .service-card{ min-height:160px }
+
+  /* Contact and footer adjustments for tablet */
+  .contact-grid{ grid-template-columns: 1fr; }
+  .contact-info, .contact-form-wrapper{ align-items:flex-start; justify-content:flex-start }
+  .footer-inner{ gap:18px }
+}
+
+/* Extra small screens */
+@media (max-width:600px){
+  .services-grid{ grid-template-columns: 1fr }
+  .service-card{ padding:16px; min-height:140px }
+  .site-header .container{ padding:12px 0 }
+  .hero-section{ padding:48px 0 32px }
+  .modal{ max-width:92% }
+  .footer-inner{ padding:12px }
+  .site-footer{ padding:24px 0 }
 }
 
 /* Why section */
@@ -131,7 +153,7 @@ body { margin: 0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Robo
 .contact-section{ padding:64px 0; background: linear-gradient(180deg, rgba(255,0,112,0.03), transparent); }
 .contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items:stretch; max-width:980px }
 .contact-info{ padding:20px; border-radius:10px; background:#fff; border:1px solid var(--card-border); display:flex; flex-direction:column; justify-content:center }
-.contact-form-wrapper{ background:#fff; padding:20px; border-radius:10px; border:1px solid var(--card-border); display:flex; align-items:center }
+.contact-form-wrapper{ background:#fff; padding:20px; border-radius:10px; border:1px solid var(--card-border); display:flex; align-items:flex-start; flex-direction:column; justify-content:center }
 .contact-form{ width:100% }
 .contact-form label{ display:block }
 .contact-form input, .contact-form textarea{ width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--card-border); background: #fbfcfd }
