@@ -18,6 +18,12 @@ export default function Contact(){
       <div className="container">
         <h2>Contact us</h2>
         <p className="muted">Tell us about your resourcing needs and we’ll be in touch.</p>
+
+        {/* Quick contact details above the form so visitors can email directly */}
+        <div className="contact-info" style={{marginBottom:12}}>
+          <p className="muted">Email: <a href="mailto:hello@talentspace.example">hello@talentspace.example</a> · Phone: +44 20 0000 0000</p>
+        </div>
+
         <form onSubmit={handleSubmit} className="contact-form" name="contact">
           <label>
             <span>Name</span>

@@ -2,7 +2,7 @@ import React from 'react'
 // Header component
 // - Shows the logo and top navigation
 // - Update `src/assets/logo-talentspace.svg` to replace the placeholder logo.
-import Logo from '../assets/logo-talentspace.svg'
+import Logo from '../assets/Talentspace.jpeg'
 
 export default function Header() {
   return (
