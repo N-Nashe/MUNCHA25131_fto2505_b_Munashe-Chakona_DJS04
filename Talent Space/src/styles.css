@@ -1,14 +1,19 @@
 :root {
   /* Brand colours (keep these names simple to change) */
-  --primary: #ff4d8e; /* main pink */
-  --primary-2: #ff85b4; /* lighter pink */
-  --bg: #ffffff;
+  --primary: #ff1f7a; /* brighter vibrant pink */
+  --primary-2: #ff6aa3; /* secondary pink */
+  --primary-vibrant: #ff0070; /* intense pink used for CTAs */
+  --bg: #f6f8fa; /* slightly off-white for less contrast */
   --muted: #6b7280;
   --text: #0f172a;
 
-  /* Footer background colour (dark blue) - change if needed */
-  --brand-dark: #0b3a5a;
+  /* Footer background colour (darker blue) - change if needed */
+  --brand-dark: #052638; /* darker navy */
+  --brand-accent-blue: #2aa0d1; /* accent blue for "Space" */
   --brand-dark-contrast: #ffffff;
+
+  /* Small tint used for card borders */
+  --card-border: rgba(11,58,90,0.08);
 }
 
 * { box-sizing: border-box; }
@@ -29,7 +34,7 @@ body { margin: 0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Robo
 .hero-section h1{ font-size: clamp(26px, 4.2vw, 44px); margin:0; line-height:1.03 }
 .lead{ color:var(--muted); margin-top:12px; max-width:700px }
 .hero-ctas{ margin-top:24px }
-.btn-primary{ background: linear-gradient(90deg,var(--primary),var(--primary-2)); color:white; padding:12px 18px; border-radius:10px; text-decoration:none; font-weight:700; display:inline-block }
+.btn-primary{ background: linear-gradient(90deg,var(--primary-vibrant),var(--primary)); color:white; padding:12px 18px; border-radius:10px; text-decoration:none; font-weight:700; display:inline-block; box-shadow: 0 6px 20px rgba(255,0,112,0.12); }
 
 /* Smaller primary button when used inside the contact form */
 .contact-form .btn-primary{ padding:8px 12px; border-radius:8px; font-size:14px }
@@ -48,8 +53,25 @@ body { margin: 0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Robo
 .services-section h2{ margin-bottom:6px }
 .muted{ color:var(--muted) }
 .services-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:16px; margin-top:20px }
-.service-card{ background: #fff; border-radius:12px; padding:20px; border:1px solid rgba(15,23,42,0.04); box-shadow: 0 6px 20px rgba(2,6,23,0.04) }
+.service-card{ background: #ffffff; border-radius:12px; padding:20px; border:1px solid var(--card-border); box-shadow: 0 6px 18px rgba(2,6,23,0.03); transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease }
+.service-card:hover{ transform: translateY(-8px); box-shadow: 0 26px 48px rgba(2,6,23,0.08); border-color: rgba(11,58,90,0.14) }
 .service-card h3{ margin:0 0 8px 0 }
+.service-card .icon{ width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; color:white; background: linear-gradient(90deg,var(--primary-vibrant),var(--primary)); margin-bottom:12px }
+.service-card .icon svg{ width:22px; height:22px; display:block }
+
+/* make why-cards match hover behaviour */
+.why-card{ background: #ffffff; padding:18px; border-radius:10px; border:1px solid var(--card-border); transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease }
+.why-card:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(2,6,23,0.06); border-color: rgba(11,58,90,0.12) }
+
+/* Scale CTA */
+.scale-section{ padding:42px 0; }
+.scale-card{ background: linear-gradient(90deg, rgba(255,0,112,0.06), rgba(255,106,163,0.02)); padding:22px; border-radius:12px; text-align:center; border:1px solid var(--card-border) }
+.scale-card .btn-primary{ background: linear-gradient(90deg,var(--primary-vibrant),var(--primary)); box-shadow: 0 8px 26px rgba(255,0,112,0.14) }
+.scale-card:hover{ transform: translateY(-4px); }
+
+/* Subtle fade-in helpers (kept simple so you can change easliy) */
+.fade-in{ animation: fadeIn 420ms ease both }
+@keyframes fadeIn{ from { opacity:0; transform: translateY(6px) } to { opacity:1; transform: translateY(0) } }
 
 /* Model & Advantage layout */
 .model-adv{ display:grid; grid-template-columns: 1fr 1fr; gap:18px; align-items:start; margin-top:18px }
@@ -75,19 +97,23 @@ body { margin: 0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Robo
 @keyframes fadeIn{ from { opacity:0; transform: translateY(6px) } to { opacity:1; transform: translateY(0) } }
 
 /* Contact */
-.contact-section{ padding:64px 0; background: linear-gradient(180deg, rgba(255,77,142,0.03), transparent); }
-.contact-form{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width:820px }
+.contact-section{ padding:64px 0; background: linear-gradient(180deg, rgba(255,0,112,0.03), transparent); }
+.contact-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items:start; max-width:980px }
+.contact-info{ padding:20px; border-radius:10px; background:#fff; border:1px solid var(--card-border) }
+.contact-form{ display:block }
 .contact-form label{ display:block }
-.contact-form input, .contact-form textarea{ width:100%; padding:10px 12px; border-radius:8px; border:1px solid rgba(15,23,42,0.06); }
+.contact-form input, .contact-form textarea{ width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--card-border); background: #fbfcfd }
 .contact-form span{ display:block; font-size:13px; color:var(--muted); margin-bottom:6px }
-.contact-form textarea{ grid-column: 1 / -1 }
+@media (max-width:900px){ .contact-grid{ grid-template-columns: 1fr } }
 
 /* Footer */
 .site-footer{ padding:36px 0 18px; margin-top:32px; }
-.site-footer.dark{ background: linear-gradient(180deg, var(--brand-dark), rgba(11,58,90,0.95)); color:var(--brand-dark-contrast); }
+.site-footer.dark{ background: linear-gradient(180deg, var(--brand-dark), rgba(5,38,56,0.98)); color:var(--brand-dark-contrast); }
 .site-footer.dark a{ color:var(--brand-dark-contrast); text-decoration:none }
 .footer-inner{ display:flex; justify-content:space-between; align-items:flex-start; gap:20px; }
-.footer-brand strong{ font-size:18px }
+.footer-brand strong{ font-size:20px }
+.footer-brand .brand-talent{ color:var(--primary-vibrant); margin-right:4px }
+.footer-brand .brand-space{ color:var(--brand-accent-blue); }
 .footer-nav{ display:flex; gap:24px; }
 .footer-col h4{ margin:0 0 10px 0 }
 .footer-col ul{ list-style:none; padding:0; margin:0 }

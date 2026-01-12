@@ -9,7 +9,7 @@ export default function Footer(){
     <footer className="site-footer dark" role="contentinfo">
       <div className="container footer-inner">
         <div className="footer-brand">
-          <strong>TalentSpace</strong>
+          <strong><span className="brand-talent">Talent</span><span className="brand-space">Space</span></strong>
           <p className="muted">Delivery-driven talent & consulting</p>
         </div>
 

@@ -19,26 +19,34 @@ export default function Contact(){
         <h2>Contact us</h2>
         <p className="muted">Tell us about your resourcing needs and we’ll be in touch.</p>
 
-        {/* Quick contact details above the form so visitors can email directly */}
-        <div className="contact-info" style={{marginBottom:12}}>
-          <p className="muted">Email: <a href="mailto:hello@talentspace.example">hello@talentspace.example</a> · Phone: +44 20 0000 0000</p>
-        </div>
+        {/* Contact section is split into two columns: quick info (left) and the form (right).
+            Change the email/phone here or in the footer if you prefer a single source. */}
+        <div className="contact-grid">
+          <aside className="contact-info">
+            <h3>Get in touch</h3>
+            <p className="muted">Email: <a href="mailto:hello@talentspace.example">hello@talentspace.example</a></p>
+            <p className="muted">Phone: +44 20 0000 0000</p>
+            <p className="muted">Or tell us about your role and we’ll recommend the right talent.</p>
+          </aside>
 
-        <form onSubmit={handleSubmit} className="contact-form" name="contact">
-          <label>
-            <span>Name</span>
-            <input name="name" value={form.name} onChange={handleChange} required />
-          </label>
-          <label>
-            <span>Email</span>
-            <input name="email" type="email" value={form.email} onChange={handleChange} required />
-          </label>
-          <label>
-            <span>Message</span>
-            <textarea name="message" value={form.message} onChange={handleChange} rows="5" required />
-          </label>
-          <button className="btn-primary" type="submit">Send message</button>
-        </form>
+          <div>
+            <form onSubmit={handleSubmit} className="contact-form" name="contact">
+              <label>
+                <span>Name</span>
+                <input name="name" value={form.name} onChange={handleChange} required />
+              </label>
+              <label>
+                <span>Email</span>
+                <input name="email" type="email" value={form.email} onChange={handleChange} required />
+              </label>
+              <label>
+                <span>Message</span>
+                <textarea name="message" value={form.message} onChange={handleChange} rows="5" required />
+              </label>
+              <button className="btn-primary" type="submit">Send message</button>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
   )
